@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPost, goToHome } from '../modules/posts';
+import { getPost, goToHome } from '../store/modules/posts';
 import Post from '../components/Post';
 
 function PostContainer({ postId }) {

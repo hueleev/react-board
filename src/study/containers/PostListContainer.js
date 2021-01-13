@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PostList from '../components/PostList';
-import * as postActions from '../modules/posts';
+import PostList from '../study/components/PostList';
+import * as postActions from '../study/store/modules/posts';
 
 class PostListContainer extends Component {
   componentDidMount() {
