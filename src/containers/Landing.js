@@ -17,8 +17,6 @@
 */
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// nodejs library that concatenates classes
-import classnames from "classnames";
 import { useInputs } from "../lib/hooks";
 
 // reactstrap components
@@ -26,17 +24,12 @@ import {
   Spinner,
   Container,
   Row,
-  Col
+  Col,
+  Alert
 } from "reactstrap";
 
 import { getBoardList, goToBoardInsert, boardTest, deleteBoard, insertBoard } from '../modules/boardReducer';
 
-// core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import CardsFooter from "components/Footers/CardsFooter.js";
-
-// index page sections
-import Download from "components/IndexSections/Download.js";
 import BoardList from '../components/BoardList';
 import Input from 'reactstrap/lib/Input';
 import FormGroup from 'reactstrap/lib/FormGroup';
@@ -44,33 +37,49 @@ import Button from 'reactstrap/lib/Button';
 
 function Landing() {
   const { boards, result } = useSelector(state => state.boardReducer);
-
-  const [ {boardTitle, boardCn}, onChange, reset] = useInputs({
+  const [{ boardTitle, boardCn }, onChange, reset] = useInputs({
     boardTitle: "",
     boardCn: ""
-});
+  });
+
+  const [insertAlert, setInsertAlert] = useState(false);
+  const [invalidAlert, setInvalidAlert] = useState(false);
+  const [deleteAlert, setDeleteAlert] = useState(false);
 
   const dispatch = useDispatch();
   const mainRef = useRef(0);
   useEffect(() => {
-    dispatch(getBoardList());
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainRef.current.scrollIntoView();
+    dispatch(getBoardList());  
   }, [result]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (insertAlert) {
+        setInsertAlert(false);
+      } else if (invalidAlert) {
+        setInvalidAlert(false);
+      } else if (deleteAlert) {
+        setDeleteAlert(false);
+      }
+    }, 3000)
+  }, [insertAlert, invalidAlert, deleteAlert]);
 
   const onSubmit = useCallback(() => {
     if (boardTitle == "" || boardCn == "") {
-      alert("실패");  
+      setInvalidAlert(true);
       return;
     }
-    dispatch(insertBoard({boardTitle, boardCn}));
-    alert("등록완료");
+    dispatch(insertBoard({ boardTitle, boardCn }));
+    setInsertAlert(true);
     reset();
-}, [{boardTitle, boardCn}]);
+  }, [{ boardTitle, boardCn }]);
 
   const onDelete = useCallback((boardSeq) => {
     dispatch(deleteBoard(boardSeq));
+    setDeleteAlert(true);
   }, []);
 
   return (
@@ -152,6 +161,31 @@ function Landing() {
             </div>
           </section>
           {/* 1st Hero Variation */}
+          {/* ALERT */}
+          <Alert color="success" isOpen={insertAlert} fade={true} style={{ position: "fixed", width: "100%", top: "0px", zIndex: 100}}>
+            <span className="alert-inner--icon">
+              <i className="ni ni-like-2" />
+            </span>
+            <span className="alert-inner--text ml-1">
+              <strong>SUCCESS!</strong> 게시물이 등록되었습니다.
+          </span>
+          </Alert>
+          <Alert color="danger" isOpen={invalidAlert} fade={true} style={{ position: "fixed", width: "100%", top: "0px", zIndex: 100}}>
+            <span className="alert-inner--icon">
+              <i className="ni ni-support-16" />
+            </span>
+            <span className="alert-inner--text ml-1">
+              <strong>DANGER!</strong> 내용을 입력해주세요!
+          </span>
+          </Alert>
+          <Alert color="warning" isOpen={deleteAlert} fade={true} style={{ position: "fixed", width: "100%", top: "0px", zIndex: 100}}>
+            <span className="alert-inner--icon">
+              <i className="ni ni-bell-55" />
+            </span>
+            <span className="alert-inner--text ml-1">
+              <strong>SUCCESS!</strong> 게시물이 삭제되었습니다!
+          </span>
+          </Alert>
         </div>
         {
           (boards.loading || boards.error || !boards.data ?
@@ -176,4 +210,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default React.memo(Landing);

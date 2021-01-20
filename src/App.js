@@ -22,7 +22,7 @@ class App extends Component {
       //   </TodoTemplate>
       // </>
       <>
-        <div className="App">
+        <div>
           <Switch>
             {routes.map((route, i) => (
               <RouteWithSubRoutes key={i} {...route} />

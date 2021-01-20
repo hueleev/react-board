@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 // reactstrap components
@@ -35,57 +35,80 @@ import {
   Col
 } from "reactstrap";
 
-function Modals({ btnYn, btnName, modalType, board, onToggle, toggleYn}) {
-  const { boardTitle, boardCn } = board;
-  
-  return (
-    <>
-      {/*defaultModal */}
-      <Button
-        color="primary"
-        type="button"
-        onClick={onToggle}
-        style = {{display: btnYn ? 'block' : 'none'}}
-      >
-        {btnName}
-      </Button>
-      <Modal
-        className="modal-dialog-centered"
-        isOpen={toggleYn}
-        toggle={onToggle}
-      >
-        <div className="modal-header">
-          <h6 className="modal-title" id="modal-title-default">
-            {boardTitle}
-          </h6>
-          <button
-            aria-label="Close"
-            className="close"
-            data-dismiss="modal"
-            type="button"
-            onClick={onToggle}
-          >
-            <span aria-hidden={true}>×</span>
-          </button>
-        </div>
-        <div className="modal-body">
-          <p>
-            {boardCn}
-          </p>
-        </div>
-        <div className="modal-footer">
-          <Button
-            className="ml-auto"
-            color="link"
-            data-dismiss="modal"
-            type="button"
-            onClick={onToggle}
-          >
-            Close
+class Modals extends React.Component {
+  state = {};
+  toggleModal = state => {
+    this.setState({
+      [state]: !this.state[state]
+    });
+  };
+  render() {
+    return (
+      <>
+        <h2 className="mt-lg mb-5">
+          <span>Javascript Components</span>
+        </h2>
+        <h3 className="h4 text-success font-weight-bold mb-4">Modals</h3>
+        <Row>
+          <Col md="4">
+            <Button
+              block
+              className="mb-3"
+              color="primary"
+              type="button"
+              onClick={() => this.toggleModal("defaultModal")}
+            >
+              Default
+            </Button>
+            <Modal
+              className="modal-dialog-centered"
+              isOpen={this.state.defaultModal}
+              toggle={() => this.toggleModal("defaultModal")}
+            >
+              <div className="modal-header">
+                <h6 className="modal-title" id="modal-title-default">
+                  Type your modal title
+                </h6>
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={() => this.toggleModal("defaultModal")}
+                >
+                  <span aria-hidden={true}>×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Far far away, behind the word mountains, far from the
+                  countries Vokalia and Consonantia, there live the blind texts.
+                  Separated they live in Bookmarksgrove right at the coast of
+                  the Semantics, a large language ocean.
+                </p>
+                <p>
+                  A small river named Duden flows by their place and supplies it
+                  with the necessary regelialia. It is a paradisematic country,
+                  in which roasted parts of sentences fly into your mouth.
+                </p>
+              </div>
+              <div className="modal-footer">
+                <Button color="primary" type="button">
+                  Save changes
                 </Button>
-        </div>
-      </Modal>
-      {/* <Col md="4">
+                <Button
+                  className="ml-auto"
+                  color="link"
+                  data-dismiss="modal"
+                  type="button"
+                  onClick={() => this.toggleModal("defaultModal")}
+                >
+                  Close
+                </Button>
+              </div>
+            </Modal>
+          </Col>
+          <Col md="4">
             <Button
               block
               className="mb-3"
@@ -264,9 +287,11 @@ function Modals({ btnYn, btnName, modalType, board, onToggle, toggleYn}) {
                 </Card>
               </div>
             </Modal>
-          </Col> */}
-    </>
-  );
+          </Col>
+        </Row>
+      </>
+    );
+  }
 }
 
-export default React.memo(Modals);
+export default Modals;
