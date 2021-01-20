@@ -18,4 +18,4 @@ function BoardInsert({ board, onChange, onSubmit }) {
     );
 }
 
-export default BoardInsert;
+export default React.memo(BoardInsert);

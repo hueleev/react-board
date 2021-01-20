@@ -6,13 +6,14 @@ import {
 import BoardListContainer from '../containers/BoardListContainer';
 import BoardContainer from "../containers/BoardContainer";
 import BoardInsertContainer from "../containers/BoardInsertContainer";
+import Landing from "../containers/Landing";
 
 // import useReactRouter from 'use-react-router';
 
 export const routes = [
   {
     path: "/",
-    component: BoardListContainer,
+    component: Landing,
     exact: true
   },
   {
@@ -23,6 +24,11 @@ export const routes = [
   {
     path: "/board/insert",
     component: BoardInsertContainer,
+    exact: true
+  },
+  {
+    path: "/list",
+    component: BoardListContainer,
     exact: true
   }
   // {

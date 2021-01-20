@@ -37,3 +37,15 @@ export const insertBoard = async(board) => {
     const response = await axios.post(`http://localhost:8080/allEars/board`, formData, settingHeaders);
     return response.data;
 }
+
+export const deleteBoard = async(boardSeq) => {
+
+    const settingHeaders = {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+
+    const response = await axios.delete(`http://localhost:8080/allEars/board/${boardSeq}`, settingHeaders);
+    return response.data;
+}
