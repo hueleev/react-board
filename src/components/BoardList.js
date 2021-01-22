@@ -17,8 +17,6 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
    });
 
    const [toggleYn, setToggleYn] = useState(false);
-
-   console.log("render List");
    const toggleModal = () => {
       setToggleYn(!toggleYn);
    }
@@ -55,42 +53,42 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
                >
                   DELETE
                   </Button>
-                  <Modal
-              className="modal-dialog-centered"
-              isOpen={toggleYn}
-              toggle={() => toggleModal("defaultModal")}
-            >
-              <div className="modal-header">
-                <h6 className="modal-title" id="modal-title-default">
-                  {board.boardTitle}
-                </h6>
-                <button
-                  aria-label="Close"
-                  className="close"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={() => toggleModal("defaultModal")}
-                >
-                  <span aria-hidden={true}>×</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  {board.boardCn}
-                </p>
-              </div>
-              <div className="modal-footer">
-                <Button
-                  className="ml-auto"
-                  color="link"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={() => toggleModal("defaultModal")}
-                >
-                  Close
+               <Modal
+                  className="modal-dialog-centered"
+                  isOpen={toggleYn}
+                  toggle={() => toggleModal("defaultModal")}
+               >
+                  <div className="modal-header">
+                     <h6 className="modal-title" id="modal-title-default">
+                        {board.boardTitle}
+                     </h6>
+                     <button
+                        aria-label="Close"
+                        className="close"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={() => toggleModal("defaultModal")}
+                     >
+                        <span aria-hidden={true}>×</span>
+                     </button>
+                  </div>
+                  <div className="modal-body">
+                     <p>
+                        {board.boardCn}
+                     </p>
+                  </div>
+                  <div className="modal-footer">
+                     <Button
+                        className="ml-auto"
+                        color="link"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={() => toggleModal("defaultModal")}
+                     >
+                        Close
                 </Button>
-              </div>
-            </Modal>
+                  </div>
+               </Modal>
             </CardBody>
          </Card>
       </Col>

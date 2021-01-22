@@ -33,7 +33,7 @@ const store = createStore(
 
 // **** (2) Provider 렌더링해서 기존의 App 감싸주기
 ReactDOM.render(
-  <Router history={customHistory}>
+  <Router history={customHistory} basename="/all-ears-front">
     <Provider store={store}>    
         <App />
     </Provider>
