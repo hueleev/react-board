@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/all-ears-front/static/css/main.f30981bf.chunk.css",
-    "main.js": "/all-ears-front/static/js/main.7b1e8470.chunk.js",
-    "main.js.map": "/all-ears-front/static/js/main.7b1e8470.chunk.js.map",
+    "main.js": "/all-ears-front/static/js/main.eef1f960.chunk.js",
+    "main.js.map": "/all-ears-front/static/js/main.eef1f960.chunk.js.map",
     "runtime-main.js": "/all-ears-front/static/js/runtime-main.1ec0811b.js",
     "runtime-main.js.map": "/all-ears-front/static/js/runtime-main.1ec0811b.js.map",
     "static/js/2.2066091d.chunk.js": "/all-ears-front/static/js/2.2066091d.chunk.js",
@@ -10,7 +10,7 @@
     "index.html": "/all-ears-front/index.html",
     "static/css/main.f30981bf.chunk.css.map": "/all-ears-front/static/css/main.f30981bf.chunk.css.map",
     "static/js/2.2066091d.chunk.js.LICENSE.txt": "/all-ears-front/static/js/2.2066091d.chunk.js.LICENSE.txt",
-    "static/js/main.7b1e8470.chunk.js.LICENSE.txt": "/all-ears-front/static/js/main.7b1e8470.chunk.js.LICENSE.txt",
+    "static/js/main.eef1f960.chunk.js.LICENSE.txt": "/all-ears-front/static/js/main.eef1f960.chunk.js.LICENSE.txt",
     "static/media/font-awesome.min.css": "/all-ears-front/static/media/fontawesome-webfont.f691f37e.woff",
     "static/media/nucleo.css": "/all-ears-front/static/media/nucleo-icons.d6a66724.ttf"
   },
@@ -18,6 +18,6 @@
     "static/js/runtime-main.1ec0811b.js",
     "static/js/2.2066091d.chunk.js",
     "static/css/main.f30981bf.chunk.css",
-    "static/js/main.7b1e8470.chunk.js"
+    "static/js/main.eef1f960.chunk.js"
   ]
 }
