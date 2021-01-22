@@ -36,7 +36,7 @@ import Input from 'reactstrap/lib/Input';
 import FormGroup from 'reactstrap/lib/FormGroup';
 import Button from 'reactstrap/lib/Button';
 
-function Landing() {
+function Git() {
   const dispatch = useDispatch();
   const mainRef = useRef(0);
 
@@ -79,6 +79,8 @@ function Landing() {
     dispatch(insertBoard({ boardTitle, boardCn, boardPhotoSbst }));
     setInsertAlert(true);
     reset();
+    document.getElementById("exampleCustomFileBrowser").value = '';
+    document.getElementsByClassName("custom-file-label")[0].innerText = "Choose file";
   }, [{ boardTitle, boardCn }]);
 
   const onDelete = useCallback((boardSeq) => {
@@ -214,4 +216,4 @@ function Landing() {
   );
 }
 
-export default React.memo(Landing);
+export default React.memo(Git);

@@ -79,6 +79,8 @@ function Landing() {
     dispatch(insertBoard({ boardTitle, boardCn, file}));
     setInsertAlert(true);
     reset();
+    document.getElementById("exampleCustomFileBrowser").value = '';
+    document.getElementsByClassName("custom-file-label")[0].innerText = "Choose file";
   }, [{ boardTitle, boardCn, file }]);
 
   const onDelete = useCallback((boardSeq) => {
