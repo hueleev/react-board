@@ -25,7 +25,9 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  CustomInput,
+  Label
 } from "reactstrap";
 
 import { getBoardList, goToBoardInsert, boardTest, deleteBoard, insertBoard } from '../modules/boardReducer';
@@ -37,9 +39,10 @@ import Button from 'reactstrap/lib/Button';
 
 function Landing() {
   const { boards, result } = useSelector(state => state.boardReducer);
-  const [{ boardTitle, boardCn }, onChange, reset] = useInputs({
+  const [{ boardTitle, boardCn, file }, onChange, reset] = useInputs({
     boardTitle: "",
-    boardCn: ""
+    boardCn: "",
+    file: null
   });
 
   const [insertAlert, setInsertAlert] = useState(false);
@@ -72,10 +75,11 @@ function Landing() {
       setInvalidAlert(true);
       return;
     }
-    dispatch(insertBoard({ boardTitle, boardCn }));
+    const file = document.getElementsByName("file")[0].files[0];
+    dispatch(insertBoard({ boardTitle, boardCn, file}));
     setInsertAlert(true);
     reset();
-  }, [{ boardTitle, boardCn }]);
+  }, [{ boardTitle, boardCn, file }]);
 
   const onDelete = useCallback((boardSeq) => {
     dispatch(deleteBoard(boardSeq));
@@ -106,8 +110,9 @@ function Landing() {
                     </h1>
                     <FormGroup>
                       <Input type="text" placeholder="Title" style={{ marginBottom: '10px' }} name="boardTitle" value={boardTitle} onChange={onChange} />
-                      <Input type="textarea" placeholder="Content ..." rows="3" name="boardCn" value={boardCn} onChange={onChange} style={{ marginBottom: '10px' }} />
-                      <Button type="button" color="secondary" size="m" onClick={onSubmit}>submit</Button>
+                      <Input type="textarea" placeholder="Content ..." rows="3" name="boardCn" value={boardCn} onChange={onChange}  style={{ marginBottom: '10px' }} />
+                      <CustomInput type="file" id="exampleCustomFileBrowser" name="file" />
+                      <Button type="button" color="secondary" size="m" style={{ marginTop: '10px' }}  onClick={onSubmit}>submit</Button>
                     </FormGroup>
                     {/* 
                       <p className="lead text-white">

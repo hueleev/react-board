@@ -10,13 +10,10 @@ import * as postsAPI from '../api/posts'; // api/posts 안의 함수 모두 불�
 import { createAction } from 'redux-actions';
 
 // 액션 타입 정의
-const GET_BOARD_LIST = 'board/GET_BOARD_LIST';
-
-const GET_BOARD_DTL = 'board/GET_BOARD_DTL';
-
-const INSERT_BOARD = 'board/INSERT_BOARD';
-
-const DELETE_BOARD = 'board/DELETE_BOARD';
+const GET_BOARD_LIST = 'board_json/GET_BOARD_LIST';
+const GET_BOARD_DTL = 'board_json/GET_BOARD_DTL';
+const INSERT_BOARD = 'board_json/INSERT_BOARD';
+const DELETE_BOARD = 'board_json/DELETE_BOARD';
 
 
 // 액션 생성함수 정의
@@ -31,12 +28,14 @@ const initialState = {
         {
             "boardSeq": 1,
             "boardTitle": "Hello",
-            "boardCn": "This is React Project"
+            "boardCn": "This is React Project",
+            "boardPhotoSbst": null
         },
         {
             "boardSeq": 2,
             "boardTitle": "BYE",
             "boardCn": "Sample Project",
+            "boardPhotoSbst": null
         }
     ],
     board: {}
@@ -57,10 +56,9 @@ export default function boardReducer_json(state = initialState, action) {
                 board: (state.boards).filter(board => board.boardSeq == action.payload)
             };
         case INSERT_BOARD:
-            console.log(action);
         return {
             ...state,
-            boards: state.boards.concat({ "boardSeq": id++, "boardTitle": action.payload.boardTitle, "boardCn": action.payload.boardCn })
+            boards: state.boards.concat({ "boardSeq": id++, "boardTitle": action.payload.boardTitle, "boardCn": action.payload.boardCn, "boardPhotoSbst": action.payload.boardPhotoSbst })
         }
         case DELETE_BOARD:
             console.log(action);

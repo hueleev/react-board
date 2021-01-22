@@ -28,6 +28,7 @@ export const insertBoard = async(board) => {
     const formData = new FormData();
     formData.append("boardTitle", board.boardTitle);
     formData.append("boardCn", board.boardCn);
+    formData.append("file", board.file);
     const settingHeaders = {
         headers: {
             'Content-Type': 'multipart/form-data'

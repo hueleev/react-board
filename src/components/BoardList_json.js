@@ -1,6 +1,4 @@
-import { getBoardDtl } from 'modules/boardReducer';
 import React, { useCallback, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
@@ -14,18 +12,24 @@ import {
 import Modals from './IndexSections/Modals';
 
 const Board = React.memo(function Board({ board, deleteBoard }) {
-   const { board : { data } } = useSelector(state => state.boardReducer);
    const onClick = useCallback((boardSeq) => {
       deleteBoard(boardSeq);
    });
 
-   const dispatch = useDispatch();
    const [toggleYn, setToggleYn] = useState(false);
    const toggleModal = () => {
       setToggleYn(!toggleYn);
-      dispatch(getBoardDtl(board.boardSeq));
    }
+   const fileReader = (file) => {
+      // 읽기
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
 
+    //로드 한 후
+    reader.onload = function  () {
+       if (document.getElementById("image") != null) { document.getElementById("image").src = reader.result };
+    };
+   }
    return (
       <Col lg="4" key={board.boardSeq}>
          <Card className="card-lift--hover shadow border-0 mb-5" onClick={() => toggleModal("defaultModal")}>
@@ -63,35 +67,28 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
                   isOpen={toggleYn}
                   toggle={() => toggleModal("defaultModal")}
                >
-                  {
-                     (
-                        !data ? null :
-                        <>
-                        <div className="modal-header">
-                           <h6 className="modal-title" id="modal-title-default">
-                              {data.boardTitle}
-                           </h6>
-                           <button
-                              aria-label="Close"
-                              className="close"
-                              data-dismiss="modal"
-                              type="button"
-                              onClick={() => toggleModal("defaultModal")}
-                           >
-                              <span aria-hidden={true}>×</span>
-                           </button>
-                        </div>
-                        <div className="modal-body">
-                           <p>
-                              {data.boardCn}
-                           </p>
-                           <p>
-                           {data.boardPhotoSbst != null ? <img style={{width: "300px"}} src={"data:image/jpeg; base64, "+ data.boardPhotoSbst}/> : null}
-                           </p>
-                        </div>
-                        </>
-                     )
-                  }
+                  <div className="modal-header">
+                     <h6 className="modal-title" id="modal-title-default">
+                        {board.boardTitle}
+                     </h6>
+                     <button
+                        aria-label="Close"
+                        className="close"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={() => toggleModal("defaultModal")}
+                     >
+                        <span aria-hidden={true}>×</span>
+                     </button>
+                  </div>
+                  <div className="modal-body">
+                     <p>
+                        {board.boardCn}
+                     </p>
+                     <p>
+                        {board.boardPhotoSbst != null ? <img id="image" style={{width: "300px"}} src={fileReader(board.boardPhotoSbst)}/> : null}
+                     </p>
+                  </div>
                   <div className="modal-footer">
                      <Button
                         className="ml-auto"
@@ -110,7 +107,7 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
    );
 });
 
-function BoardList({ boards, deleteBoard }) {
+function BoardList_json({ boards, deleteBoard }) {
    return (
       <>
          {boards.map(board => (
@@ -120,4 +117,4 @@ function BoardList({ boards, deleteBoard }) {
    );
 }
 
-export default React.memo(BoardList);
+export default React.memo(BoardList_json);

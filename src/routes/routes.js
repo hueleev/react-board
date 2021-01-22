@@ -6,7 +6,7 @@ import {
 import BoardListContainer from '../containers/BoardListContainer';
 import BoardContainer from "../containers/BoardContainer";
 import BoardInsertContainer from "../containers/BoardInsertContainer";
-import Landing from "../containers/Git";
+import Landing from "../containers/Landing";
 import Git from "../containers/Git";
 
 // import useReactRouter from 'use-react-router';
@@ -18,22 +18,22 @@ export const routes = [
     exact: true
   },
   {
-    path: "/all-ears-front/board/list",
+    path: "/",
     component: Landing,
     exact: true
   },
   {
-    path: "/all-ears-front/board/detail/:boardSeq",
+    path: "/board/detail/:boardSeq",
     component: BoardContainer,
     exact: true
   },
   {
-    path: "/all-ears-front/board/insert",
+    path: "/board/insert",
     component: BoardInsertContainer,
     exact: true
   },
   {
-    path: "/all-ears-front/list",
+    path: "/list",
     component: BoardListContainer,
     exact: true
   }

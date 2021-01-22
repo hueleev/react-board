@@ -51,7 +51,7 @@ export default function boardReducer(state = initialState, action) {
         case GET_BOARD_DTL:
         case GET_BOARD_DTL_SUCCESS:
         case GET_BOARD_DTL_ERROR:
-            return handleAsyncActionsById(GET_BOARD_DTL, 'board', true)(state, action);
+            return handleAsyncActions(GET_BOARD_DTL, 'board', true)(state, action);
         case INSERT_BOARD:
         case INSERT_BOARD_ERROR:
         case INSERT_BOARD_SUCCESS:

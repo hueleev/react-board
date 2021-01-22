@@ -25,12 +25,13 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  CustomInput
 } from "reactstrap";
 
 import { getBoardList, deleteBoard, insertBoard } from '../modules/boardReducer_json';
 
-import BoardList from '../components/BoardList';
+import BoardList_json from '../components/BoardList_json';
 import Input from 'reactstrap/lib/Input';
 import FormGroup from 'reactstrap/lib/FormGroup';
 import Button from 'reactstrap/lib/Button';
@@ -40,9 +41,10 @@ function Landing() {
   const mainRef = useRef(0);
 
   const { boards } = useSelector(state => state.boardReducer_json);
-  const [{ boardTitle, boardCn }, onChange, reset] = useInputs({
+  const [{ boardTitle, boardCn, boardPhotoSbst }, onChange, reset] = useInputs({
     boardTitle: "",
-    boardCn: ""
+    boardCn: "",
+    boardPhotoSbst: null
   });
 
   useEffect(() => {
@@ -73,7 +75,8 @@ function Landing() {
       setInvalidAlert(true);
       return;
     }
-    dispatch(insertBoard({ boardTitle, boardCn }));
+    const boardPhotoSbst = document.getElementsByName("file")[0].files[0];
+    dispatch(insertBoard({ boardTitle, boardCn, boardPhotoSbst }));
     setInsertAlert(true);
     reset();
   }, [{ boardTitle, boardCn }]);
@@ -107,8 +110,9 @@ function Landing() {
                     </h1>
                     <FormGroup>
                       <Input type="text" placeholder="Title" style={{ marginBottom: '10px' }} name="boardTitle" value={boardTitle} onChange={onChange} />
-                      <Input type="textarea" placeholder="Content ..." rows="3" name="boardCn" value={boardCn} onChange={onChange} style={{ marginBottom: '10px' }} />
-                      <Button type="button" color="secondary" size="m" onClick={onSubmit}>submit</Button>
+                      <Input type="textarea" placeholder="Content ..." rows="3" name="boardCn" value={boardCn} onChange={onChange}  style={{ marginBottom: '10px' }} />
+                      <CustomInput type="file" id="exampleCustomFileBrowser" name="file" />
+                      <Button type="button" color="secondary" size="m" style={{ marginTop: '10px' }}  onClick={onSubmit}>submit</Button>
                     </FormGroup>
                     {/* 
                       <p className="lead text-white">
@@ -198,7 +202,7 @@ function Landing() {
               <Row className="justify-content-center">
                 <Col lg="12">
                   <Row className="row-grid">
-                    <BoardList boards={boards} deleteBoard={onDelete} />
+                    <BoardList_json boards={boards} deleteBoard={onDelete} />
                   </Row>
                 </Col>
               </Row>
