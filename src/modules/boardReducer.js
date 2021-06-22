@@ -34,6 +34,7 @@ export const getBoardDtl = createPromiseThunkById(GET_BOARD_DTL, postsAPI.getBoa
 export const insertBoard = createPromiseThunk(INSERT_BOARD, postsAPI.insertBoard);
 export const deleteBoard = createPromiseThunk(DELETE_BOARD, postsAPI.deleteBoard);
 export const boardTest = createAction(BOARD_TEST, (text, text2) => ({ text, text2, id: 3 }));
+
 // 초기상태 정의
 const initialState = {
     boards: reducerUtils.initial(),
