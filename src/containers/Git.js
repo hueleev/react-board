@@ -108,7 +108,7 @@ function Git() {
                   <Col lg="6">
                     <h1 className="display-3 text-white">
                       Board
-                        <span>insert board</span>
+                        <span>메모는 storage에 저장됩니다 ! 자유롭게 쓰세요 -</span>
                     </h1>
                     <FormGroup>
                       <Input type="text" placeholder="Title" style={{ marginBottom: '10px' }} name="boardTitle" value={boardTitle} onChange={onChange} />
