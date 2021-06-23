@@ -13,7 +13,7 @@ import Git from "../containers/Git";
 
 export const routes = [
   {
-    path: "/all-ears-front",
+    path: "/react-board",
     component: Git,
     exact: true
   },

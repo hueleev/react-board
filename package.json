@@ -1,6 +1,6 @@
 {
-  "homepage": "https://hueleev.github.io/all-ears-front",
-  "name": "all-ears-front",
+  "homepage": "https://hueleev.github.io/react-board",
+  "name": "react-board",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

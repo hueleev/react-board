@@ -40,7 +40,7 @@ const persistor = persistStore(store);
 
 // **** (2) Provider 렌더링해서 기존의 App 감싸주기
 ReactDOM.render(
-  <Router history={customHistory} basename="/all-ears-front">
+  <Router history={customHistory} basename="/react-board">
     <Provider store={store}>    
         <PersistGate persistor={persistor}>
           <App />

@@ -1,12 +1,6 @@
-# All Ears Project: FRONT_END with (REACT + REDUX) 
+# Simple Board Project: FRONT_END with (REACT + REDUX) & react-persist
 ## Board Sample
-https://hueleev.github.io/all-ears-front/
+https://hueleev.github.io/react-board/
 
 ## Design
-
 This project was designed with [ARGON_DESIGN React App](https://www.creative-tim.com/product/argon-design-system-react?ref=madewithreact).
-
-## TDL
-* upload image, music
-* profile
-* follow
