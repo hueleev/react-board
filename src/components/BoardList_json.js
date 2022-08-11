@@ -20,15 +20,19 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
    const toggleModal = () => {
       setToggleYn(!toggleYn);
    }
-   const fileReader = (file) => {
-      // 읽기
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    //로드 한 후
-    reader.onload = function  () {
-       if (document.getElementById("image") != null) { document.getElementById("image").src = reader.result };
-    };
+   const fileReader = (file, boardSeq) => {
+      console.log(file,file.name);
+      if (file && file.name !== undefined) {
+         
+         // 읽기
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         //로드 한 후
+         reader.onload = function  () {
+            if (document.getElementById(`image_${boardSeq}`) != null) { document.getElementById(`image_${boardSeq}`).src = reader.result };
+         };
+      }
+      
    }
    return (
       <Col lg="4" key={board.boardSeq}>
@@ -86,7 +90,7 @@ const Board = React.memo(function Board({ board, deleteBoard }) {
                         {board.boardCn}
                      </p>
                      <p>
-                        {board.boardPhotoSbst != null ? <img id="image" style={{width: "300px"}} src={fileReader(board.boardPhotoSbst)}/> : null}
+                        {board.boardPhotoSbst != null && board.boardPhotoSbst.name !== undefined ? <img id={`image_${board.boardSeq}`} alt={`image_${board.boardSeq}`} style={{width: "300px"}} src={fileReader(board.boardPhotoSbst, board.boardSeq)}/> : null}
                      </p>
                   </div>
                   <div className="modal-footer">

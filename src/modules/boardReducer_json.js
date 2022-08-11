@@ -41,7 +41,6 @@ const initialState = {
     board: {}
 }
 
-let id = 3;
 
 // 리듀서 작성
 export default function boardReducer_json(state = initialState, action) {
@@ -56,9 +55,13 @@ export default function boardReducer_json(state = initialState, action) {
                 board: (state.boards).filter(board => board.boardSeq == action.payload)
             };
         case INSERT_BOARD:
+            var id = 1;
+            if (state.boards.length !== 0) {
+                id = state.boards[state.boards.length-1].boardSeq + 1;
+            }
         return {
             ...state,
-            boards: state.boards.concat({ "boardSeq": id++, "boardTitle": action.payload.boardTitle, "boardCn": action.payload.boardCn, "boardPhotoSbst": action.payload.boardPhotoSbst })
+            boards: state.boards.concat({ "boardSeq": id, "boardTitle": action.payload.boardTitle, "boardCn": action.payload.boardCn, "boardPhotoSbst": action.payload.boardPhotoSbst })
         }
         case DELETE_BOARD:
             console.log(action);
